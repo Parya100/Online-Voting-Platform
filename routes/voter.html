@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voter Voting Interface</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+        }
+        /* Sidebar Styling */
+        
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            background-color: #1e2d3b;
+            color: #fff;
+            position: fixed;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .sidebar h2 {
+            font-size: 22px;
+            margin-bottom: 30px;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+        
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .sidebar ul li {
+            margin-bottom: 15px;
+        }
+        
+        .sidebar ul li a {
+            display: block;
+            padding: 10px 15px;
+            text-decoration: none;
+            color: #fff;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .sidebar ul li a:hover {
+            background-color: #34495e;
+        }
+        /* Header Styling */
+        
+        .header {
+            margin-left: 250px;
+            background-color: #2e3b4e;
+            color: #fff;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header h1 {
+            font-size: 24px;
+        }
+        
+        .header div {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .header img {
+            border-radius: 50%;
+            height: 50px;
+            width: 50px;
+            object-fit: cover;
+            border: 2px solid #fff;
+        }
+        /* Main Content Styling */
+        
+        .content {
+            margin-left: 250px;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        /* Voter Voting Form */
+        
+        .voter-form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        
+        .voter-form h3 {
+            font-size: 22px;
+            color: #2e3b4e;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        /* Candidate List Styling (Pillar Layout) */
+        
+        .candidate-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .candidate-list li {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background-color: #fafafa;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .candidate-list li:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .candidate-list img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 20px;
+            object-fit: cover;
+            border: 3px solid #fff;
+        }
+        
+        .candidate-list input[type="radio"] {
+            margin-right: 15px;
+            transform: scale(1.2);
+        }
+        
+        .candidate-list span {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .submit-btn {
+            background-color: #4caf50;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            width: 100%;
+            margin-top: 20px;
+        }
+        
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+        /* Confirmation Message */
+        
+        .confirmation {
+            padding: 20px;
+            background-color: #f1f8e9;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            display: none;
+        }
+        
+        .confirmation h4 {
+            font-size: 18px;
+            color: #388e3c;
+        }
+        /* Footer Styling */
+        
+        .footer {
+            margin-left: 250px;
+            padding: 10px 20px;
+            background-color: #2e3b4e;
+            color: #fff;
+            text-align: center;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="sidebar">
+        <h2>Voting System</h2>
+        <ul>
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">Votes</a></li>
+            <li><a href="#">Voters</a></li>
+            <li><a href="#">Positions</a></li>
+            <li><a href="#">Candidates</a></li>
+            <li><a href="#">Ballot Position</a></li>
+            <li><a href="#">Election Title</a></li>
+        </ul>
+    </div>
+
+    <div class="header">
+        <h1>Vote for Your Candidate</h1>
+        <div>
+            <span>Voter Name</span>
+            <img src="../image/img.png" alt="Profile">
+        </div>
+    </div>
+
+    <div class="content">
+
+        <div class="voter-form">
+            <h3>Select Your Candidate:</h3>
+            <form id="voteForm">
+                <ul class="candidate-list">
+
+                    <li>
+                        <input type="radio" name="candidate" value="1" id="candidate1">
+                        <img src="../image/cand1.png" alt="Candidate 1">
+                        <span>Candidate 1</span>
+                    </li>
+                    <li>
+                        <input type="radio" name="candidate" value="2" id="candidate2">
+                        <img src="../image/cand2.png" alt="Candidate 2">
+                        <span>Candidate 2</span>
+                    </li>
+                    <li>
+                        <input type="radio" name="candidate" value="3" id="candidate3">
+                        <img src="../image/cand3.png" alt="Candidate 3">
+                        <span>Candidate 3</span>
+                    </li>
+                    <li>
+                        <input type="radio" name="candidate" value="4" id="candidate4">
+                        <img src="../image/cand4.png" alt="Candidate 4">
+                        <span>Candidate 4</span>
+                    </li>
+                    <!-- <li>
+                        <input type="radio" name="candidate" value="5" id="candidate5">
+                        <img src="path/to/candidate5.jpg" alt="Candidate 5">
+                        <span>Candidate 5</span>
+                    </li> -->
+                </ul>
+                <button type="submit" class="submit-btn">Cast Your Vote</button>
+            </form>
+        </div>
+
+        <!-- Confirmation Message -->
+        <div class="confirmation" id="confirmationMessage">
+            <h4>Thank you for casting your vote!</h4>
+            <p>Your vote has been successfully submitted.</p>
+        </div>
+    </div>
+
+    <div class="footer">
+        © 2024 Voting System. All Rights Reserved.
+    </div>
+
+    <script>
+        // JavaScript to handle the voting process
+        const voteForm = document.getElementById('voteForm');
+        const confirmationMessage = document.getElementById('confirmationMessage');
+
+        voteForm.addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent page reload on form submission
+
+
+            const selectedCandidate = document.querySelector('input[name="candidate"]:checked');
+
+            if (selectedCandidate) {
+                // Show confirmation message if vote is casted
+                confirmationMessage.style.display = 'block';
+                voteForm.reset(); // Reset the form after voting
+            } else {
+                alert('Please select a candidate before voting.');
+            }
+        });
+    </script>
+
+</body>
+
+</html>
