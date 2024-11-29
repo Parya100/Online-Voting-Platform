@@ -11,7 +11,6 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f5f7fa;
         }
-        /* Sidebar Styling */
         
         .sidebar {
             width: 250px;
@@ -53,7 +52,6 @@
         .sidebar ul li a:hover {
             background-color: #34495e;
         }
-        /* Header Styling */
         
         .header {
             margin-left: 250px;
@@ -83,14 +81,12 @@
             object-fit: cover;
             border: 2px solid #fff;
         }
-        /* Main Content Styling */
         
         .content {
             margin-left: 250px;
             padding: 20px;
             min-height: 100vh;
         }
-        /* Dashboard Stats Styling */
         
         .dashboard-stats {
             display: flex;
@@ -155,7 +151,6 @@
             margin-bottom: 20px;
             color: #2e3b4e;
         }
-        /* Footer Styling */
         
         .footer {
             margin-left: 250px;
@@ -236,7 +231,7 @@
         const votesChart = document.getElementById('votesChart').getContext('2d');
         const sampleChart = document.getElementById('sampleChart').getContext('2d');
 
-        // Best Villain Chart
+
         new Chart(votesChart, {
             type: 'bar',
             data: {
@@ -252,7 +247,7 @@
             }
         });
 
-        // Sample Chart
+
         new Chart(sampleChart, {
             type: 'horizontalBar',
             data: {

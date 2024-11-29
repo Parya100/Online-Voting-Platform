@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candidate Management</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f7fa;
+        }
+        
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            background-color: #1e2d3b;
+            color: #fff;
+            position: fixed;
+            left: 0;
+            top: 0;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .sidebar h2 {
+            font-size: 22px;
+            margin-bottom: 30px;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+        
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .sidebar ul li {
+            margin-bottom: 15px;
+        }
+        
+        .sidebar ul li a {
+            display: block;
+            padding: 10px 15px;
+            text-decoration: none;
+            color: #fff;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .sidebar ul li a:hover {
+            background-color: #34495e;
+        }
+        
+        .header {
+            margin-left: 250px;
+            background-color: #2e3b4e;
+            color: #fff;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header h1 {
+            font-size: 24px;
+        }
+        
+        .content {
+            margin-left: 250px;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .candidate-form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        
+        .candidate-form h2 {
+            margin-bottom: 20px;
+            color: #2e3b4e;
+        }
+        
+        .candidate-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        
+        .candidate-form input,
+        .candidate-form select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        
+        .candidate-form button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .candidate-form button:hover {
+            background-color: #45a049;
+        }
+        
+        .candidate-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .candidate-table th,
+        .candidate-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .candidate-table th {
+            background-color: #2e3b4e;
+            color: #fff;
+        }
+        
+        .candidate-table tr:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .candidate-photo img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="sidebar">
+        <h2>Voting System</h2>
+        <ul>
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">Votes</a></li>
+            <li><a href="#">Voters</a></li>
+            <li><a href="#">Positions</a></li>
+            <li><a href="#">Candidates</a></li>
+            <li><a href="#">Ballot Position</a></li>
+            <li><a href="#">Election Title</a></li>
+        </ul>
+    </div>
+
+    <div class="header">
+        <h1>Candidate Management</h1>
+    </div>
+
+    <div class="content">
+        <div class="candidate-form">
+            <h2>Add Candidate</h2>
+            <form id="candidateForm">
+                <label for="name">Candidate Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter candidate name" required>
+
+                <label for="position">Position:</label>
+                <select id="position" name="position" required>
+                    <option value="President">President</option>
+                    <option value="Vice President">Vice President</option>
+                    <option value="Secretary">Secretary</option>
+                </select>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Enter candidate email" required>
+
+                <label for="phone">Phone:</label>
+                <input type="tel" id="phone" name="phone" placeholder="Enter candidate phone number" required>
+
+                <label for="photo">Photo:</label>
+                <input type="file" id="photo" name="photo" accept="image/*" required>
+
+                <button type="submit">Add Candidate</button>
+            </form>
+        </div>
+
+        <table class="candidate-table">
+            <thead>
+                <tr>
+                    <th>Photo</th>
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="candidateList">
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        document.getElementById('candidateForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const position = document.getElementById('position').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const photoFile = document.getElementById('photo').files[0];
+
+            if (photoFile) {
+                const reader = new FileReader();
+                reader.onload = function() {
+                    const photoSrc = reader.result;
+                    const newRow = `<tr>
+                        <td class="candidate-photo"><img src="${photoSrc}" alt="Candidate Photo"></td>
+                        <td>${name}</td>
+                        <td>${position}</td>
+                        <td>${email}</td>
+                        <td>${phone}</td>
+                        <td>
+                            <button>Edit</button>
+                            <button>Delete</button>
+                        </td>
+                    </tr>`;
+                    document.getElementById('candidateList').innerHTML += newRow;
+                };
+                reader.readAsDataURL(photoFile);
+            }
+
+            this.reset();
+        });
+    </script>
+
+</body>
+
+</html>

@@ -12,6 +12,7 @@
             background-color: #f5f7fa;
             color: #333;
         }
+        /* Sidebar Styling */
         
         .sidebar {
             width: 250px;
@@ -83,14 +84,12 @@
             object-fit: cover;
             border: 2px solid #fff;
         }
-        /* Main Content Styling */
         
         .content {
             margin-left: 250px;
             padding: 20px;
             min-height: 100vh;
         }
-        /* Voter Voting Form */
         
         .voter-form {
             background: #fff;
@@ -107,7 +106,6 @@
             text-transform: uppercase;
             letter-spacing: 1px;
         }
-        /* Candidate List Styling (Pillar Layout) */
         
         .candidate-list {
             display: grid;
@@ -121,7 +119,7 @@
         .candidate-list li {
             display: flex;
             align-items: center;
-            padding: 10px;
+            padding: 20px;
             background-color: #fafafa;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -169,7 +167,6 @@
         .submit-btn:hover {
             background-color: #45a049;
         }
-        /* Confirmation Message */
         
         .confirmation {
             padding: 20px;
@@ -184,7 +181,6 @@
             font-size: 18px;
             color: #388e3c;
         }
-        /* Footer Styling */
         
         .footer {
             margin-left: 250px;
@@ -200,9 +196,9 @@
 <body>
 
     <div class="sidebar">
-        <h2>Voting System</h2>
+        <h2 id="#">Voting Platform</h2>
         <ul>
-            <li><a href="#">Dashboard</a></li>
+            <li><a href="../../routes/dashboard.html">Dashboard</a></li>
             <li><a href="#">Votes</a></li>
             <li><a href="#">Voters</a></li>
             <li><a href="#">Positions</a></li>
@@ -213,81 +209,18 @@
     </div>
 
     <div class="header">
-        <h1>Vote for Your Candidate</h1>
+        <h1> Election Title</h1>
         <div>
             <span>Voter Name</span>
-            <img src="../image/img.png" alt="Profile">
+            <img src="../../image/img.png" alt="Profile">
         </div>
     </div>
 
-    <div class="content">
-
-        <div class="voter-form">
-            <h3>Select Your Candidate:</h3>
-            <form id="voteForm">
-                <ul class="candidate-list">
-
-                    <li>
-                        <input type="radio" name="candidate" value="1" id="candidate1">
-                        <img src="../image/cand1.png" alt="Candidate 1">
-                        <span>Candidate 1</span>
-                    </li>
-                    <li>
-                        <input type="radio" name="candidate" value="2" id="candidate2">
-                        <img src="../image/cand2.png" alt="Candidate 2">
-                        <span>Candidate 2</span>
-                    </li>
-                    <li>
-                        <input type="radio" name="candidate" value="3" id="candidate3">
-                        <img src="../image/cand3.png" alt="Candidate 3">
-                        <span>Candidate 3</span>
-                    </li>
-                    <li>
-                        <input type="radio" name="candidate" value="4" id="candidate4">
-                        <img src="../image/cand4.png" alt="Candidate 4">
-                        <span>Candidate 4</span>
-                    </li>
-                    <!-- <li>
-                        <input type="radio" name="candidate" value="5" id="candidate5">
-                        <img src="path/to/candidate5.jpg" alt="Candidate 5">
-                        <span>Candidate 5</span>
-                    </li> -->
-                </ul>
-                <button type="submit" class="submit-btn">Cast Your Vote</button>
-            </form>
-        </div>
-
-        <!-- Confirmation Message -->
-        <div class="confirmation" id="confirmationMessage">
-            <h4>Thank you for casting your vote!</h4>
-            <p>Your vote has been successfully submitted.</p>
-        </div>
-    </div>
-
-    <div class="footer">
-        © 2024 Voting System. All Rights Reserved.
-    </div>
-
-    <script>
-        // JavaScript to handle the voting process
-        const voteForm = document.getElementById('voteForm');
-        const confirmationMessage = document.getElementById('confirmationMessage');
-
-        voteForm.addEventListener('submit', function(e) {
-            e.preventDefault(); // Prevent page reload on form submission
 
 
-            const selectedCandidate = document.querySelector('input[name="candidate"]:checked');
 
-            if (selectedCandidate) {
-                // Show confirmation message if vote is casted
-                confirmationMessage.style.display = 'block';
-                voteForm.reset(); // Reset the form after voting
-            } else {
-                alert('Please select a candidate before voting.');
-            }
-        });
-    </script>
+
+
 
 </body>
 

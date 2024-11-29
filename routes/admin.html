@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f9;
+            color: #333;
+        }
+        /* Sidebar Styling */
+        
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            background-color: #2c3e50;
+            color: #fff;
+            position: fixed;
+            padding: 30px 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .sidebar h2 {
+            font-size: 24px;
+            margin-bottom: 40px;
+            text-align: center;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #ecf0f1;
+        }
+        
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .sidebar ul li {
+            margin-bottom: 20px;
+        }
+        
+        .sidebar ul li a {
+            display: block;
+            padding: 12px 20px;
+            text-decoration: none;
+            color: #ecf0f1;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .sidebar ul li a:hover {
+            background-color: #34495e;
+        }
+        /* Main Content Styling */
+        
+        .main-content {
+            margin-left: 250px;
+            padding: 30px;
+        }
+        
+        .header {
+            background-color: #34495e;
+            color: #fff;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            margin: 0;
+        }
+        
+        .header div {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .header img {
+            border-radius: 50%;
+            height: 60px;
+            width: 60px;
+            object-fit: cover;
+            border: 2px solid #fff;
+        }
+        /* Dashboard Stats */
+        
+        .dashboard-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .stat-card {
+            background: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        .stat-card h3 {
+            margin-bottom: 15px;
+            color: #2c3e50;
+            font-size: 30px;
+            font-weight: bold;
+        }
+        
+        .stat-card p {
+            color: #7f8c8d;
+            font-size: 16px;
+        }
+        /* Manage Section Styling */
+        
+        .manage-section {
+            margin-top: 40px;
+        }
+        
+        .manage-section h2 {
+            font-size: 24px;
+            color: #34495e;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        
+        .manage-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .manage-table th,
+        .manage-table td {
+            padding: 15px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        
+        .manage-table th {
+            background-color: #34495e;
+            color: white;
+        }
+        
+        .manage-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .manage-table tr:hover {
+            background-color: #ecf0f1;
+        }
+        
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+        }
+        
+        .action-buttons button {
+            padding: 10px 18px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 16px;
+        }
+        
+        .action-buttons button:hover {
+            background-color: #2980b9;
+        }
+        /* Footer */
+        
+        .footer {
+            padding: 20px;
+            background-color: #34495e;
+            color: #fff;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        /* Responsive */
+        
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 200px;
+            }
+            .main-content {
+                margin-left: 200px;
+            }
+            .dashboard-stats {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .sidebar {
+                width: 150px;
+            }
+            .main-content {
+                margin-left: 150px;
+            }
+            .dashboard-stats {
+                grid-template-columns: 1fr;
+            }
+            .header h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="sidebar">
+        <h2>Admin Dashboard</h2>
+        <ul>
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">Manage Candidates</a></li>
+            <li><a href="#">Manage Voters</a></li>
+            <li><a href="#">Manage Positions</a></li>
+            <li><a href="#">Votes Overview</a></li>
+            <li><a href="#">Settings</a></li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+
+        <div class="header">
+            <h1>Admin Dashboard</h1>
+            <div>
+                <span>Prince Arya</span>
+                <img src="../image/img.png" alt="Profile">
+            </div>
+        </div>
+
+
+        <div class="dashboard-stats">
+            <div class="stat-card">
+                <h3>1500</h3>
+                <p>Total Voters</p>
+            </div>
+            <div class="stat-card">
+                <h3>10</h3>
+                <p>Total Candidates</p>
+            </div>
+            <div class="stat-card">
+                <h3>300</h3>
+                <p>Total Votes</p>
+            </div>
+        </div>
+
+        <!-- Manage Candidates Section -->
+        <div class="manage-section">
+            <h2>Manage Candidates</h2>
+            <table class="manage-table">
+                <thead>
+                    <tr>
+                        <th>Candidate Name</th>
+                        <th>Position</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Candidate 1</td>
+                        <td>President</td>
+                        <td class="action-buttons">
+                            <button>Edit</button>
+                            <button>Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Candidate 2</td>
+                        <td>Vice President</td>
+                        <td class="action-buttons">
+                            <button>Edit</button>
+                            <button>Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        <div class="manage-section">
+            <h2>Manage Voters</h2>
+            <table class="manage-table">
+                <thead>
+                    <tr>
+                        <th>Voter name</th>
+                        <th>Email</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Voter 1</td>
+                        <td>voter1@example.com</td>
+                        <td class="action-buttons">
+                            <button>Edit</button>
+                            <button>Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Voter 2</td>
+                        <td>voter2@example.com</td>
+                        <td class="action-buttons">
+                            <button>Edit</button>
+                            <button>Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <!-- © 2024 Voting System. All Rights Reserved. -->
+        </div>
+
+    </div>
+
+</body>
+
+</html>
